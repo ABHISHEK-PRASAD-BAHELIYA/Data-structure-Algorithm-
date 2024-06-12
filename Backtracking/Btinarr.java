@@ -6,9 +6,9 @@ public class Btinarr {
             return;
         }
         // recursion (work)
-        arr[i] = val;
-        changeArr(arr, i + 1, val + 1);
-        arr[i] = arr[i] - 2;
+        arr[i] = val; // val change
+        changeArr(arr, i + 1, val + 1); // fxn call step
+        arr[i] = arr[i] - 2; // backtracking step
     }
 
     public static void printArr(int arr[]) {
