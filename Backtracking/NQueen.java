@@ -27,23 +27,27 @@ public class NQueen {
         return true;
     }
 
-    public static void nQueens(char board[][], int row) {
+    public static boolean nQueens(char board[][], int row) {
         // base case
         if (row == board.length) {
             // printBoard(board);
             count++;
-            return;
+            return true;
         }
 
         // column loop
         for (int j = 0; j < board.length; j++) {
             if (isSafe(board, row, j)) {
                 board[row][j] = 'Q';
-                nQueens(board, row + 1); // function call
+                if (nQueens(board, row + 1)) {
+                    return true;
+                }
                 board[row][j] = 'X'; // backtracking step
             }
 
         }
+
+        return false;
     }
 
     public static void printBoard(char board[][]) {
@@ -59,7 +63,7 @@ public class NQueen {
     static int count = 0;
 
     public static void main(String args[]) {
-        int n = 4;
+        int n = 2;
         char board[][] = new char[n][n];
         // initialize
         for (int i = 0; i < n; i++) {
@@ -68,8 +72,14 @@ public class NQueen {
             }
         }
 
-        nQueens(board, 0);
-        System.out.println("Total ways to solve n Queens = " + count);
+        if (nQueens(board, 0)) {
+            System.out.println("Solution is possible");
+            printBoard(board);
+        } else {
+            System.out.println("Solution is not possible");
+        }
+
+        // System.out.println("Total ways to solve n Queens = " + count);
     }
 
 }
